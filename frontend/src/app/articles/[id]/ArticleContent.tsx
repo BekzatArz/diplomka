@@ -1,8 +1,6 @@
-// components/ArticleContent.tsx  или рядом с page.tsx
-import { API_URL } from "@/config"
-
 "use client";
 
+import { API_URL } from "@/config";
 import React from "react";
 
 type ArticleContentBlock = {
@@ -12,10 +10,10 @@ type ArticleContentBlock = {
 };
 
 interface ArticleContentProps {
-  contents: ArticleContentBlock[];
+  contents?: ArticleContentBlock[];
 }
 
-export default function ArticleContent({ contents }: ArticleContentProps) {
+export default function ArticleContent({ contents = [] }: ArticleContentProps) {
   return (
     <div className="article__content">
       {contents.map((block, i) => {
@@ -32,7 +30,7 @@ export default function ArticleContent({ contents }: ArticleContentProps) {
             <img
               key={i}
               className="article__image"
-              src={API_URL + `${block.image_url}`}
+              src={`${API_URL}${block.image_url}`}
               alt="Изображение статьи"
             />
           );
