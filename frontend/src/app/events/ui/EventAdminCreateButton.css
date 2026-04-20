@@ -1,0 +1,21 @@
+.admin-create-button-container {
+  text-align: right;
+  margin-bottom: 30px;
+}
+
+.admin-create-btn {
+  background: #d400ffa0;
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  font-size: 1.05rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.admin-create-btn:hover {
+  background: #d400ff80;
+  transform: translateY(-2px);
+}

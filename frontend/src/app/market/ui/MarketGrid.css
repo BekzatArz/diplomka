@@ -1,0 +1,119 @@
+.market-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* 🔥 кнопка добавить */
+.add-product-toggle {
+  width: fit-content;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 12px;
+  background: #d400ff;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.add-product-toggle:hover {
+  opacity: 0.8;
+}
+
+/* 🔥 сетка */
+.market-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* 📱 адаптив */
+@media (max-width: 1300px) {
+  .market-grid {
+    grid-template-columns: repeat(3, 280px);
+  }
+}
+
+@media (max-width: 1000px) {
+  .market-grid {
+    grid-template-columns: repeat(2, 280px);
+  }
+}
+
+@media (max-width: 650px) {
+  .market-grid {
+    grid-template-columns: repeat(1, 280px);
+  }
+}
+.product-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(6px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 1000;
+}
+
+.product-modal-content {
+  background: #121212;
+  padding: 20px;
+  border-radius: 16px;
+
+  width: 70vw;
+  height: 80vh;
+
+  color: white;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  overflow-y: auto;
+
+  position: relative;
+}
+
+/* CLOSE BUTTON */
+.product-modal-content button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  width: 32px;
+  height: 32px;
+
+  border-radius: 50%;
+  border: none;
+
+  background: rgba(0,0,0,0.5);
+  color: white;
+
+  cursor: pointer;
+}
+
+/* IMAGE */
+.product-modal-content img {
+  width: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+/* SCROLL */
+.product-modal-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.product-modal-content::-webkit-scrollbar-thumb {
+  background: #666;
+  border-radius: 10px;
+}

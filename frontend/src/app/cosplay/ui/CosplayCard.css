@@ -1,0 +1,58 @@
+.cosplay-card {
+  width: 280px;   /* фикс ширина карточки */
+  height: 500px;  /* как у тебя уже было */
+  display: flex;
+  flex-direction: column;
+  background: #121212;
+  border-radius: 16px;
+  padding: 14px;
+  color: #fff;
+  justify-content: flex-start; /* 🔥 вместо space-between */
+
+  gap: 2px;
+  transition: 0.2s ease;
+}
+
+.cosplay-card:hover {
+  transform: translateY(-3px);
+}
+
+.img-wrapper {
+  margin: 0 auto;
+  width: 270px;
+  height: 260px;
+
+  overflow: hidden;
+  border-radius: 12px;
+
+  /* 🔥 glow от favorite_color */
+  box-shadow: 0 8px 25px rgba(0,0,0,0.5),
+              0 0 15px var(--glow-color);
+}
+.img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* сохраняет пропорции, режет лишнее */
+  display: block;
+}
+
+
+.cosplay-card h3 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.cosplay-card .des {
+  font-size: 14px;
+  opacity: 0.8;
+  max-width: 300px;
+  margin: 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.cosplay-card span {
+  margin-top: auto; /* 🔥 ключ */
+  font-size: 12px;
+  opacity: 0.8;
+}

@@ -1,0 +1,103 @@
+body {
+  font-family: var(--font-manrope), sans-serif;  
+  font-weight: 600;
+  overflow-x: hidden;
+  position: relative;
+  height: 100vh;
+  margin: 0px;
+}
+
+.app {
+  overflow-x: hidden;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  position: relative;
+  min-height: 100vh;
+  background-color: rgb(26, 26, 27);
+  
+} 
+.container {
+  width: 100%;
+  display: flex;
+  min-height: 100vh;
+  border-top: 1px solid #d400ffa0;
+  padding-top: 40px;
+  color: white;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  /* Убрали статический фон здесь */
+  overflow: hidden; /* Важно, чтобы слайдер не создавал скролл */
+}
+
+/* Затемнение теперь накладываем поверх слайдера, но под текстом */
+.container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.67);
+  z-index: 1; /* Чуть выше слайдера */
+}
+
+.container > *:not(.ui-slider) {
+  position: relative;
+  z-index: 2; /* Контент выше затемнения */
+}
+
+/* Слайдер-фон */
+.ui-slider {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.ui-track {
+  display: flex;
+  /* Ширина: 8 слайдов (4 оригинала + 4 копии) */
+  width: calc(8 * 100vw); 
+  height: 100%;
+  /* Увеличиваем время до 22с (5с ожидания + 0.5с рывок на каждый слайд) */
+  animation: jumpRight 22s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+
+.ui-slide {
+  width: 100vw; /* Каждый слайд на всю ширину экрана */
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  flex-shrink: 0;
+}
+
+/* Пути к вашим картинкам */
+.slide1 { background-image: url("../../public/back1.jpg"); }
+.slide2 { background-image: url("../../public/back2.jpg"); }
+.slide3 { background-image: url("../../public/back3.jpg"); }
+.slide4 { background-image: url("../../public/back4.jpg"); }
+
+@keyframes jumpRight {
+  /* Расчет для 4 слайдов:
+     Движение занимает ~2% времени (около 0.5с при цикле 22с)
+     Ожидание занимает ~23% времени (около 5с)
+  */
+
+  /* Слайд 1 */
+  0%, 23% { transform: translateX(-50%); } 
+
+  /* Переход к Слайду 2 */
+  25%, 48% { transform: translateX(-37.5%); } 
+
+  /* Переход к Слайду 3 */
+  50%, 73% { transform: translateX(-25%); } 
+
+  /* Переход к Слайду 4 */
+  75%, 98% { transform: translateX(-12.5%); } 
+
+  /* Возврат к началу (бесшовный переход) */
+  100% { transform: translateX(0%); }
+}

@@ -1,0 +1,139 @@
+.admin-product-card {
+  --product-glow: #d400ff;
+
+  background: #121212;
+  border-radius: 16px;
+  padding: 12px;
+
+  color: white;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  min-height: 320px;
+
+  cursor: pointer;
+
+  transition: 0.25s ease;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+.admin-product-card:hover {
+  transform: translateY(-5px);
+  box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.6),
+    0 0 18px var(--product-glow);
+}
+
+/* ===== IMAGE (КВАДРАТ) ===== */
+.admin-product-image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #000;
+}
+
+.admin-product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.admin-product-card:hover .admin-product-image img {
+  transform: scale(1.05);
+}
+
+/* ===== CONTENT ===== */
+.admin-product-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.admin-product-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin-product-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.admin-product-price {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--product-glow);
+}
+
+.admin-product-desc {
+  font-size: 12px;
+  opacity: 0.8;
+  line-height: 1.3;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+
+  overflow: hidden;
+}
+
+.admin-product-seller {
+  font-size: 12px;
+  opacity: 0.8;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* INSTAGRAM */
+.insta-link {
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  color: #d400ff;
+  text-decoration: none;
+}
+
+/* ACTIONS */
+.admin-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.admin-actions button {
+  flex: 1;
+  padding: 8px;
+
+  border: none;
+  border-radius: 10px;
+
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.admin-actions button:first-child {
+  background: #d400ff;
+  color: white;
+}
+
+.admin-actions button:last-child {
+  background: #ff2b2b;
+  color: white;
+}
+
+.admin-actions button:hover {
+  opacity: 0.85;
+}

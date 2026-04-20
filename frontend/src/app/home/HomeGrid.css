@@ -1,0 +1,297 @@
+/* --- Глобальные стили страницы --- */
+.cos-landing {
+  background: #080808;
+  color: #efefef;
+  font-family: 'Inter', -apple-system, sans-serif;
+  overflow-x: hidden;
+}
+
+.cos-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* --- Секция "О косплее" (ABOUT) --- */
+.cos-about {
+  padding: 100px 0;
+  background: linear-gradient(180deg, #080808 0%, #111 100%);
+}
+
+.cos-about-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.cos-section-title {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 24px;
+  color: #fff;
+  line-height: 1.1;
+}
+
+.cos-about-text p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #aaa;
+  margin-bottom: 20px;
+}
+
+.cos-about-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.stat-card {
+  padding: 30px;
+  background: #1a1a1a;
+  border-radius: 20px;
+  border-left: 4px solid #ff00ff;
+  transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateX(10px);
+}
+
+.stat-card h3 { 
+  font-size: 2.5rem; 
+  color: #ff00ff; 
+  margin: 0; 
+}
+
+/* --- Секция направлений (TYPES) --- */
+.cos-types {
+  padding: 100px 0;
+}
+
+.cos-center-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 60px;
+  color: #fff;
+}
+
+.cos-types-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 30px;
+}
+
+.cos-type-card {
+  background: #121212;
+  padding: 40px;
+  border-radius: 30px;
+  text-align: center;
+  border: 1px solid #1a1a1a;
+  transition: all 0.3s ease;
+}
+
+.cos-type-card:hover {
+  border-color: #00ffff;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 255, 255, 0.1);
+}
+
+.type-icon { 
+  font-size: 40px; 
+  margin-bottom: 20px; 
+  display: block;
+}
+
+.cos-type-card h3 { 
+  font-size: 1.5rem; 
+  margin-bottom: 12px; 
+  color: #fff;
+}
+
+.cos-type-card p { 
+  color: #888; 
+  line-height: 1.5; 
+}
+
+/* --- Секция сетки косплея (GRID SECTION) --- */
+.cos-section {
+  padding: 80px 0;
+  color: #fff;
+}
+
+.cos-section-header {
+  margin-top: 40px;
+  margin-bottom: 50px;
+  font-size: 2.5rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+.cos-info {
+  max-width: 600px;
+  margin-bottom: 50px;
+}
+
+.cos-title {
+  font-size: 3rem;
+  font-weight: 900;
+  line-height: 1;
+  margin-bottom: 15px;
+  background: linear-gradient(to right, #fff, #666);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.cos-desc {
+  color: #888;
+  line-height: 1.6;
+}
+
+.cos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+/* --- Карточка косплея --- */
+.cos-card {
+  background: #111;
+  border-radius: 24px;
+  overflow: hidden;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  border: 1px solid #222;
+}
+
+.cos-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+  border-color: #444;
+}
+
+.cos-card-media {
+  position: relative;
+  height: 400px;
+  overflow: hidden;
+}
+
+.cos-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.cos-card:hover .cos-card-media img {
+  transform: scale(1.1);
+}
+
+.cos-card-tag {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 6px 12px;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(10px);
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid rgba(255,255,255,0.1);
+  z-index: 2;
+}
+
+/* Ховер-инфо на карточке */
+.cos-card-hover-info {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 25px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.cos-card:hover .cos-card-hover-info {
+  opacity: 1;
+}
+
+.skill-label {
+  color: #00ffcc;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.cos-card-hover-info p {
+  font-size: 14px;
+  line-height: 1.4;
+  color: #ccc;
+  margin: 0;
+}
+
+/* Нижняя панель карточки */
+.cos-card-body {
+  padding: 20px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #111;
+}
+
+.cos-card-name {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin: 0;
+  color: #fff;
+}
+
+.cos-card-author {
+  font-size: 0.9rem;
+  color: #666;
+  text-decoration: none;
+  transition: color 0.2s;
+  display: block;
+  margin-top: 4px;
+}
+
+.cos-card-author:hover {
+  color: #fff;
+}
+
+.cos-action-btn {
+  background: transparent;
+  border: none;
+  color: #444;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+}
+
+.cos-action-btn:hover {
+  color: #ff3366;
+  transform: scale(1.2);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .cos-about-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .cos-section-title, .cos-title {
+    font-size: 2.2rem;
+  }
+  
+  .cos-card-media {
+    height: 320px;
+  }
+}

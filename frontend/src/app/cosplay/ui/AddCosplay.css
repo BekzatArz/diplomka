@@ -1,0 +1,128 @@
+.add-cosplay {
+  max-width: 1000px;
+  margin: 10px auto;
+  padding: 14px;
+  background: #121212;
+  border-radius: 14px;
+  color: white;
+  border-right: 2px solid #d400ffa0;
+  border-bottom: 1px solid #d400ffa0;
+}
+
+/* ====== LAYOUT ====== */
+.add-cosplay__layout {
+  display: flex;
+  gap: 67px;
+}
+
+/* LEFT SIDE */
+.add-cosplay__left {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* RIGHT SIDE */
+.add-cosplay__right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ====== ROW INPUTS ====== */
+.add-cosplay__row {
+  display: flex;
+  gap: 10px;
+}
+
+.add-cosplay__row input {
+  flex: 1;
+}
+
+/* ====== INPUTS ====== */
+.add-cosplay input,
+.add-cosplay textarea {
+  width: 100%;
+  padding: 9px 10px;
+  border-radius: 8px;
+  border: 1px solid #333;
+  background: #1c1c1c;
+  color: white;
+  font-size: 14px;
+  outline: none;
+}
+
+.add-cosplay textarea {
+  min-height: 120px;
+  resize: none;
+}
+
+/* focus */
+.add-cosplay input:focus,
+.add-cosplay textarea:focus {
+  border-color: #d400ffa0;
+  box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.3);
+}
+
+/* ====== FILE INPUT ====== */
+.add-cosplay input[type="file"] {
+  padding: 6px;
+  background: #1c1c1c;
+  border-radius: 8px;
+}
+
+/* ====== COLOR PICKER ====== */
+.add-cosplay__color {
+  width: 42px;
+  height: 42px;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  background: none;
+}
+
+/* ====== BUTTON ====== */
+.add-cosplay button {
+  padding: 10px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #d400ffea, #80009aa0);
+  font-weight: 600;
+  cursor: pointer;
+  color: white;
+  transition: 0.2s;
+}
+
+.add-cosplay button:hover {
+  transform: scale(1.03);
+}
+
+.add-cosplay button:active {
+  transform: scale(0.98);
+}
+
+/* button always bottom */
+.add-cosplay__right button {
+  margin-top: auto;
+}
+.add-cosplay-toggle {
+  display: block;
+  margin: 10px auto;
+  padding: 10px 18px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #d400ffea, #80009aa0);
+  color: white;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.add-cosplay-toggle:hover {
+  transform: scale(1.05);
+}
+
+.add-cosplay-toggle:active {
+  transform: scale(0.98);
+}

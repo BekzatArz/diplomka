@@ -1,0 +1,66 @@
+/* Оболочка, которая центрирует статью и ограничивает её ширину */
+.article__container {
+  position: relative;
+  z-index: 2; /* Обязательно, чтобы быть поверх слайдера и его затемнения */
+  width: 100%;
+  max-width: 850px; /* Оптимальная ширина для длинного чтения */
+  margin: 0 auto;
+  padding: 40px 24px 100px; /* Отступы: сверху, по бокам, снизу */
+  box-sizing: border-box;
+}
+
+/* ЗАГОЛОВОК */
+.article__title {
+  font-size: clamp(32px, 5vw, 52px); /* Адаптивный размер шрифта */
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 48px;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* КОНТЕНТ */
+.article__content {
+  display: flex;
+  flex-direction: column;
+  gap: 28px; /* Расстояние между параграфами и картинками */
+}
+
+/* ТЕКСТ */
+.article__text {
+  font-size: 20px;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 400; /* Мастер-начертание для текста обычно 400-500 */
+}
+
+/* ИЗОБРАЖЕНИЯ ВНУТРИ СТАТЬИ */
+.article__image {
+  width: 100%;
+  height: auto;
+  max-height: 550px;
+  object-fit: cover;
+  border-radius: 24px;
+  margin: 12px 0;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Тонкая рамка для объема */
+  transition: transform 0.3s ease;
+}
+
+.article__image:hover {
+  transform: scale(1.01); /* Легкий эффект при наведении */
+}
+
+/* Адаптив для мобилок */
+@media (max-width: 600px) {
+  .article__container {
+    padding-top: 20px;
+  }
+  .article__title {
+    margin-bottom: 24px;
+  }
+  .article__text {
+    font-size: 18px;
+  }
+}

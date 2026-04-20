@@ -1,0 +1,89 @@
+.adWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(22,22,25);
+}
+
+.adContainer {
+  width: 100%;
+  max-width: 1900px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1px;
+}
+
+.adImage {
+  width: 100%;
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+/* Центральный баннер */
+.centerImage {
+  position: relative;
+  max-width: 1200px;
+  max-height: 300px;
+}
+
+/* Боковые баннеры */
+.sideImage {  
+  max-height: 300px;
+}
+
+/* Скрываем мобильный баннер по умолчанию */
+.mobileImage {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  z-index: 2;
+}
+
+/* Скрываем десктоп баннер на телефонах */
+.desktopBanner {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/* --- Адаптивность --- */
+
+/* Маленькие ноутбуки */
+@media (max-width: 1300px) {
+  .sideImage {
+    display: none;
+  }
+  .centerImage {
+    max-width: 100%;
+  }
+}
+
+/* Планшеты */
+@media (max-width: 1024px) {
+  .centerImage {
+    max-height: 260px;
+  }
+}
+
+/* Телефоны */
+@media (max-width: 600px) {
+  .centerImage {
+    min-height: 140px;
+    max-height: 280px;
+  }
+
+  .desktopBanner {
+    display: none;
+  }
+
+  .mobileImage {
+    display: block;
+    position: relative;
+    z-index: 1;
+  }
+}
