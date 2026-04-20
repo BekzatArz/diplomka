@@ -17,7 +17,8 @@ def create_app():
     CORS(app, resources={
     r"/*": {
         "origins": [
-            "*"
+            "http://localhost:3000",
+            "https://diplomka-umxh.vercel.app"
         ]
     }
 })
