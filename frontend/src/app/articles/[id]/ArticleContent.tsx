@@ -1,17 +1,15 @@
 "use client";
 
-import { API_URL } from "@/config";
-import React from "react";
-
 type ArticleContentBlock = {
-  type: "text" | "image";
-  text?: string;
-  image_url?: string;
+    type: "text" | "image";
+    text?: string;
+    image_url?: string;
 };
 
 interface ArticleContentProps {
-  contents?: ArticleContentBlock[];
+    contents?: ArticleContentBlock[];
 }
+import { API_URL } from "@/config";
 
 export default function ArticleContent({ contents = [] }: ArticleContentProps) {
   return (
