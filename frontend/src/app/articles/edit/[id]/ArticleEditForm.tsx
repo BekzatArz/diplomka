@@ -1,6 +1,6 @@
 // app/articles/edit/[id]/ArticleEditForm.tsx
 "use client";
-import { API_URL } from "@/../config"
+import { API_URL } from "@/config"
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";

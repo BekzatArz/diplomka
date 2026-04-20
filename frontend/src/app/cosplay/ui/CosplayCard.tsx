@@ -1,4 +1,4 @@
-import { API_URL } from "@/../../config"
+import { API_URL } from "@/config"
 import { Cosplay } from "../../../features/cosplay/model/types"
 import './CosplayCard.css'
 

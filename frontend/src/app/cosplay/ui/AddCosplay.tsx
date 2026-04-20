@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import './AddCosplay.css'
-import { API_URL } from "@/../../config"
+import { API_URL } from "@/config"
 
 export default function AddCosplay() {
   const [title, setTitle] = useState("")

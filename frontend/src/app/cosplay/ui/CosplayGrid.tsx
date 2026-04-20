@@ -12,7 +12,7 @@ import {
 
 import { Cosplay } from "../../../features/cosplay/model/types"
 import AddCosplay from './AddCosplay'
-import { API_URL } from '@/../../config'
+import { API_URL } from '@/config'
 
 export default function CosplayGrid() {
   const [items, setItems] = useState<Cosplay[]>([])

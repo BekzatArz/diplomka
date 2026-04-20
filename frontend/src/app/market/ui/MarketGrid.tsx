@@ -13,7 +13,7 @@ import {
   deleteProduct,
   updateProduct,
 } from "@/features/market/api/productApi"
-import { API_URL } from "@/../../config"
+import { API_URL } from "@/config"
 
 export default function MarketGrid() {
   const [items, setItems] = useState<Product[]>([])

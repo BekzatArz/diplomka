@@ -3,7 +3,7 @@ import HeaderWrapper from "@/widgets/header/HeaderWrapper";
 import { notFound } from "next/navigation";
 import EventAdminActions from "./EventAdminActions";
 import "./EventDetail.css";
-import { API_URL } from "@/../../config";
+import { API_URL } from "@/config";
 
 interface Props {
   params: Promise<{ id: string }>;

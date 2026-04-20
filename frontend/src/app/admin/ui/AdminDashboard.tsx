@@ -1,5 +1,5 @@
 'use client'
-import { useAdminGuard } from "../login/lib/useAdminGuard";
+import { useAdminGuard } from "@/app/admin/login/lib/useAdminGuard";
 
 const AdminDashboard = () => {
  const checked = useAdminGuard();

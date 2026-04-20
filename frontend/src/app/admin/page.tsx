@@ -1,6 +1,6 @@
 import HeaderWrapper from '@/widgets/header/HeaderWrapper'
 import React from 'react'
-import AdminDashboard from './ui/AdminDashboard'
+import AdminDashboard from '@/app/admin/ui/AdminDashboard'
 
 const page = () => {
   return (

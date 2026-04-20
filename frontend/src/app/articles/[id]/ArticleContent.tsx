@@ -1,5 +1,5 @@
 // components/ArticleContent.tsx  или рядом с page.tsx
-import { API_URL } from "@/../config"
+import { API_URL } from "@/config"
 
 "use client";
 

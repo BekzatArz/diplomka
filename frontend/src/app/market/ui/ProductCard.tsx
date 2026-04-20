@@ -1,6 +1,6 @@
 import { Product } from "@/features/market/model/types"
 import "./ProductCard.css"
-import { API_URL } from "@/../../config"
+import { API_URL } from "@/config"
 
 export default function ProductCard({
   item,
