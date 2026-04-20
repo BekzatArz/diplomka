@@ -22,10 +22,11 @@ def create_app():
         ]
     }
 })
-
+    
     db.init_app(app)
     migrate.init_app(app, db)
-
+    with app.app_context():
+        db.create_all() 
     # routes
     app.register_blueprint(admin_bp, url_prefix="/auth")
     app.register_blueprint(cosplay_bp, url_prefix="/cosplay")
