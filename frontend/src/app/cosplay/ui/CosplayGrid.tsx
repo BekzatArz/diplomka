@@ -8,9 +8,9 @@ import {
   getAdminCosplays,
   deleteCosplay,
   approveCosplay,
-} from "../../../features/cosplay/api/cosplayApi"
+} from "@/features/cosplay/api/cosplayApi"
 
-import { Cosplay } from "../../../features/cosplay/model/types"
+import { Cosplay } from "@/features/cosplay/model/types"
 import AddCosplay from './AddCosplay'
 import { API_URL } from '@/config'
 

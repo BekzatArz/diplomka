@@ -1,6 +1,6 @@
 import { Cosplay } from "@/features/cosplay/model/types"
 import './AdminCosplayCard.css'
-import { API_URL } from "../../../config"
+import { API_URL } from "@/config"
 
 export default function AdminCosplayCard({
   item,

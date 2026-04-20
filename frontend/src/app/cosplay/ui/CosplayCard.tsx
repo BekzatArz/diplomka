@@ -1,5 +1,5 @@
 import { API_URL } from "@/config"
-import { Cosplay } from "../../../features/cosplay/model/types"
+import { Cosplay } from "@/features/cosplay/model/types"
 import './CosplayCard.css'
 
 export default function CosplayCard({ item, onClick, }: { item: Cosplay 

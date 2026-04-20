@@ -1,5 +1,5 @@
 "use client";
-import { useAppSelector } from '../../store/hooks';
+import { useAppSelector } from "@/store/hooks"
 import { selectThemeMode } from "./themeSelector";
 import { useEffect, useState } from "react";
 
