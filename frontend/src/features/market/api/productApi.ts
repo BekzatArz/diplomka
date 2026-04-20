@@ -1,4 +1,6 @@
-const API = "http://localhost:5000/products"
+import { API_URL } from "@/../config"
+
+const API = `${API_URL}/products`
 
 function getToken() {
   if (typeof window === "undefined") return null

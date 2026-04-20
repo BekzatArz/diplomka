@@ -1,4 +1,5 @@
 // components/ArticleContent.tsx  или рядом с page.tsx
+import { API_URL } from "@/../config"
 
 "use client";
 
@@ -31,7 +32,7 @@ export default function ArticleContent({ contents }: ArticleContentProps) {
             <img
               key={i}
               className="article__image"
-              src={`http://localhost:5000${block.image_url}`}
+              src={API_URL + `${block.image_url}`}
               alt="Изображение статьи"
             />
           );

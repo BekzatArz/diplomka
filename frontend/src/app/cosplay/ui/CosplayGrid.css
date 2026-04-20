@@ -122,3 +122,35 @@
     height: 95vh;
   }
 }
+
+@media (max-width: 768px) {
+  .cosplay-page {
+    padding: 12px;
+    gap: 14px;
+  }
+
+  .cosplay-grid {
+    grid-template-columns: 1fr; /* 1 колонка */
+    gap: 12px;
+  }
+
+  .add-cosplay {
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+  }
+}
+@media (max-width: 480px) {
+  .cosplay-page {
+    padding: 10px;
+  }
+
+  .cosplay-grid {
+    gap: 10px;
+  }
+
+  .add-cosplay {
+    padding: 12px;
+    border-radius: 10px;
+  }
+}

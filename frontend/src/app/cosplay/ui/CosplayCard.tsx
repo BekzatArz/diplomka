@@ -1,3 +1,4 @@
+import { API_URL } from "@/../../config"
 import { Cosplay } from "../../../features/cosplay/model/types"
 import './CosplayCard.css'
 
@@ -15,7 +16,7 @@ export default function CosplayCard({ item, onClick, }: { item: Cosplay
         <div className="img-wrapper">
           <img style={{
                         "--glow-color": item.favorite_color || "#d400ff",
-                      } as React.CSSProperties} src={`http://localhost:5000${item.image_url}`} />
+                      } as React.CSSProperties} src={API_URL + `${item.image_url}`} />
         </div>
       )}
 

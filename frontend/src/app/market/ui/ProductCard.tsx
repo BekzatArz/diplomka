@@ -1,5 +1,6 @@
 import { Product } from "@/features/market/model/types"
 import "./ProductCard.css"
+import { API_URL } from "@/../../config"
 
 export default function ProductCard({
   item,
@@ -14,7 +15,7 @@ export default function ProductCard({
       {item.image_url && (
         <div className="product-image">
           <img
-            src={`http://localhost:5000${item.image_url}`}
+            src={API_URL + `{item.image_url}`}
             alt={item.title}
           />
         </div>

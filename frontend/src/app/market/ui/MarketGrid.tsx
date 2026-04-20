@@ -13,6 +13,7 @@ import {
   deleteProduct,
   updateProduct,
 } from "@/features/market/api/productApi"
+import { API_URL } from "@/../../config"
 
 export default function MarketGrid() {
   const [items, setItems] = useState<Product[]>([])
@@ -111,7 +112,7 @@ export default function MarketGrid() {
 
             {selected.image_url && (
               <img
-                src={`http://localhost:5000${selected.image_url}`}
+                src={API_URL + `${selected.image_url}`}
                 alt={selected.title}
               />
             )}

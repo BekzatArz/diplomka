@@ -1,5 +1,6 @@
 import { Product } from "@/features/market/model/types"
 import "./AdminProductCard.css"
+import { API_URL } from "@/../../config"
 
 export default function AdminProductCard({
   item,
@@ -18,7 +19,7 @@ export default function AdminProductCard({
       {item.image_url && (
         <div className="admin-product-image">
           <img
-            src={`http://localhost:5000${item.image_url}`}
+            src={API_URL + `${item.image_url}`}
             alt={item.title}
           />
         </div>

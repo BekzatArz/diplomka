@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import './AddCosplay.css'
+import { API_URL } from "@/../../config"
 
 export default function AddCosplay() {
   const [title, setTitle] = useState("")
@@ -27,7 +28,7 @@ const handleSubmit = async () => {
     formData.append("image", file)
   }
 
-  await fetch("http://localhost:5000/cosplay/", {
+  await fetch(API_URL + `/cosplay/`, {
     method: "POST",
     body: formData,
   })

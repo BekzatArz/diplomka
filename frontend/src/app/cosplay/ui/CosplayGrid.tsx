@@ -12,6 +12,7 @@ import {
 
 import { Cosplay } from "../../../features/cosplay/model/types"
 import AddCosplay from './AddCosplay'
+import { API_URL } from '@/../../config'
 
 export default function CosplayGrid() {
   const [items, setItems] = useState<Cosplay[]>([])
@@ -89,7 +90,7 @@ export default function CosplayGrid() {
       <button style={{ color: selected.favorite_color }} onClick={() => setSelected(null)}>✖</button>
 
       {selected.image_url && (
-        <img src={`http://localhost:5000${selected.image_url}`} />
+        <img src={API_URL + `${selected.image_url}`} />
       )}
 
       <h2 style={{ color: selected.favorite_color }}>

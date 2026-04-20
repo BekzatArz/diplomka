@@ -1,5 +1,6 @@
 // app/articles/edit/[id]/ArticleEditForm.tsx
 "use client";
+import { API_URL } from "@/../config"
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -24,7 +25,7 @@ interface ArticleEditFormProps {
   article: ArticleFull;
 }
 
-const API_BASE = "http://localhost:5000";
+const API_BASE = API_URL
 
 export default function ArticleEditForm({ article }: ArticleEditFormProps) {
   const router = useRouter();

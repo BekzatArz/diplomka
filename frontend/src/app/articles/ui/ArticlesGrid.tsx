@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation"
 import "./ArticlesGrid.css"
 
 import { getArticles } from "@/features/articles/api/articleApi"
+import { API_URL } from "@/../../config"
 
 type Article = {
   id: number
@@ -54,7 +55,7 @@ export default function ArticlesGrid() {
             {item.image_url && (
               <div className="article-img">
                 <img
-                  src={`http://localhost:5000${item.image_url}`}
+                  src={API_URL + `${item.image_url}`}
                   alt={item.title}
                 />
               </div>

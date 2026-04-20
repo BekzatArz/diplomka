@@ -1,4 +1,6 @@
-const API = "http://localhost:5000/articles"
+import { API_URL } from "@/../config"
+
+const API = `${API_URL}/articles`
 
 export type Article = {
   id: number

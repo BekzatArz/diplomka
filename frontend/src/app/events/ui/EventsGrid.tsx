@@ -4,6 +4,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import './EventGrid.css'
+import { API_URL } from "@/../../config";
 
 type Event = {
   id: number;
@@ -39,7 +40,7 @@ export default function EventsGrid({ events }: EventsGridProps) {
         const imageSrc = event.image_url
           ? event.image_url.startsWith("http")
             ? event.image_url
-            : `http://localhost:5000${event.image_url}`
+            : API_URL + `${event.image_url}`
           : "/placeholder-event.jpg"; // можно добавить плейсхолдер
 
         return (

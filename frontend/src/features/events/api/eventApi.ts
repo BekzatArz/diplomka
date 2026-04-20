@@ -1,4 +1,5 @@
-const API = "http://localhost:5000/events";
+import { API_URL } from "@/../config"
+const API = `${API_URL}/events`;
 
 export type EventContentBlock = {
   type: "text" | "image";

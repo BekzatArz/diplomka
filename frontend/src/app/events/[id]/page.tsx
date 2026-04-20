@@ -3,6 +3,7 @@ import HeaderWrapper from "@/widgets/header/HeaderWrapper";
 import { notFound } from "next/navigation";
 import EventAdminActions from "./EventAdminActions";
 import "./EventDetail.css";
+import { API_URL } from "@/../../config";
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -33,7 +34,7 @@ export default async function EventPage({ params }: Props) {
 
   const coverImage = event.contents.find((b: any) => b.type === "image")?.image_url;
   const fullCoverUrl = coverImage 
-    ? (coverImage.startsWith("http") ? coverImage : `http://localhost:5000${coverImage}`)
+    ? (coverImage.startsWith("http") ? coverImage : API_URL + `${coverImage}`)
     : null;
 
   return (
@@ -72,7 +73,7 @@ export default async function EventPage({ params }: Props) {
                     <img
                       src={block.image_url?.startsWith("http") 
                         ? block.image_url 
-                        : `http://localhost:5000${block.image_url}`}
+                        : API_URL + `${block.image_url}`}
                       alt=""
                       className="evp-img"
                     />
