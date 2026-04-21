@@ -9,6 +9,18 @@ KZ_TZ = pytz.timezone("Asia/Bishkek")
 def now_kz():
     return datetime.now(KZ_TZ)
 
+from app.extensions import db
+
+class User(db.Model):
+    __tablename__ = 'users'
+
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    password = db.Column(db.String(255), nullable=False)  # Длина 255 важна для хеша
+    role = db.Column(db.String(20), default='user')      # 'admin' или 'user'
+
+    def __repr__(self):
+        return f'<User {self.email}>'
 
 # 🖼 IMAGE
 class Image(db.Model):

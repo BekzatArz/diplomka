@@ -6,15 +6,16 @@ import HeaderWrapper from "@/widgets/header/HeaderWrapper"
 import { createArticle } from "@/features/articles/api/articleApi"
 import "./CreateArticle.css"
 
-type Block =
-  | { type: "text"; text: string }
-  | { type: "image"; file: File | null; fileKey: string }
+// Четкие типы для блоков
+type TextBlock = { type: "text"; text: string };
+type ImageBlock = { type: "image"; file: File | null; fileKey: string; previewUrl?: string };
+type Block = TextBlock | ImageBlock;
 
 export default function CreateArticlePage() {
   const router = useRouter()
-
   const [title, setTitle] = useState("")
   const [blocks, setBlocks] = useState<Block[]>([])
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const addText = () => {
     setBlocks((prev) => [...prev, { type: "text", text: "" }])
@@ -27,92 +28,114 @@ export default function CreateArticlePage() {
     ])
   }
 
+  const removeBlock = (index: number) => {
+    setBlocks((prev) => prev.filter((_, i) => i !== index))
+  }
+
   const updateText = (index: number, value: string) => {
-    const copy = [...blocks]
-    // @ts-ignore
-    copy[index].text = value
-    setBlocks(copy)
+    setBlocks((prev) =>
+      prev.map((b, i) => (i === index && b.type === "text" ? { ...b, text: value } : b))
+    )
   }
 
   const updateImage = (index: number, file: File | null) => {
-    const copy = [...blocks]
-    // @ts-ignore
-    copy[index].file = file
-    setBlocks(copy)
+    if (!file) return
+    
+    // Создаем URL для предпросмотра
+    const previewUrl = URL.createObjectURL(file)
+
+    setBlocks((prev) =>
+      prev.map((b, i) => 
+        i === index && b.type === "image" 
+          ? { ...b, file, previewUrl } 
+          : b
+      )
+    )
   }
 
   const handleSubmit = async () => {
-    const formData = new FormData()
+    if (!title.trim()) return alert("Введите заголовок")
+    setIsSubmitting(true)
 
-    formData.append("title", title)
+    try {
+      const formData = new FormData()
+      formData.append("title", title)
 
-    const prepared = blocks.map((b) => {
-      if (b.type === "image") {
-        formData.append(b.fileKey, b.file as File)
-        return { type: "image", fileKey: b.fileKey }
-      }
+      const prepared = blocks.map((b) => {
+        if (b.type === "image" && b.file) {
+          formData.append(b.fileKey, b.file)
+          return { type: "image", fileKey: b.fileKey }
+        }
+        return { type: "text", text: (b as TextBlock).text }
+      })
 
-      return { type: "text", text: b.text }
-    })
+      formData.append("contents", JSON.stringify(prepared))
 
-    formData.append("contents", JSON.stringify(prepared))
-
-    await createArticle(formData)
-    router.push("/articles")
+      await createArticle(formData)
+      router.push("/articles")
+    } catch (error) {
+      console.error(error)
+      alert("Ошибка при создании")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
     <div className="app">
       <HeaderWrapper />
-
-      <div style={{backgroundColor: 'gray'}} className="container create-article">
-
+      <div className="container create-article" style={{ backgroundColor: '#f5f5f5', padding: '20px' }}>
         <h1 className="create-article-title">Создать статью</h1>
 
-        {/* TITLE */}
         <input
           className="create-article-input"
-          placeholder="Заголовок"
+          placeholder="Заголовок статьи"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
 
-        {/* BLOCKS */}
         <div className="blocks">
           {blocks.map((block, i) => (
-            <div key={i} className="block">
+            <div key={i} className="block-item" style={{ marginBottom: '15px', position: 'relative' }}>
+              <button className="remove-block" onClick={() => removeBlock(i)}>✕</button>
+              
               {block.type === "text" && (
                 <textarea
                   className="block-textarea"
-                  placeholder="Текст..."
+                  placeholder="Начните писать..."
                   value={block.text}
                   onChange={(e) => updateText(i, e.target.value)}
                 />
               )}
 
               {block.type === "image" && (
-                <input
-                  className="block-file"
-                  type="file"
-                  onChange={(e) =>
-                    updateImage(i, e.target.files?.[0] || null)
-                  }
-                />
+                <div className="image-upload-block">
+                  {block.previewUrl && (
+                    <img src={block.previewUrl} alt="Preview" className="image-preview" style={{ maxWidth: '200px', display: 'block' }} />
+                  )}
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => updateImage(i, e.target.files?.[0] || null)}
+                  />
+                </div>
               )}
             </div>
           ))}
         </div>
 
-        {/* ACTIONS */}
         <div className="actions">
-          <button className="btn" onClick={addText}>+ Text</button>
-          <button className="btn" onClick={addImage}>+ Image</button>
+          <button className="btn-add" onClick={addText}>+ Текст</button>
+          <button className="btn-add" onClick={addImage}>+ Картинка</button>
         </div>
 
-        <button className="submit-btn" onClick={handleSubmit}>
-          Создать
+        <button 
+          className="submit-btn" 
+          onClick={handleSubmit} 
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? "Публикация..." : "Опубликовать статью"}
         </button>
-
       </div>
     </div>
   )
