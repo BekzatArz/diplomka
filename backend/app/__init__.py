@@ -56,5 +56,5 @@ def create_app():
     app.register_blueprint(product_bp, url_prefix="/products")
     app.register_blueprint(article_bp, url_prefix="/articles")
     app.register_blueprint(event_bp, url_prefix="/events")
-
+    print(app.url_map)
     return app
