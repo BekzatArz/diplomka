@@ -1,67 +1,197 @@
+/* Основной контейнер */
 .create-event-container {
   max-width: 800px;
+  width: 95%; /* Резерв для мобилок */
   margin: 40px auto;
-  padding: 20px;
-  color: white;
-  background: #1a1a1a;
-  border-radius: 12px;
+  padding: 32px;
+  background: #141414; /* Глубокий темный */
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  color: #f0f0f0;
+  box-sizing: border-box;
+}
+
+/* Заголовки */
+.create-event-container h1 {
+  margin-top: 0;
+  font-size: 24px;
+  color: #fff;
+  border-left: 4px solid #00c853;
+  padding-left: 15px;
+  margin-bottom: 30px;
 }
 
 .create-event-form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-}
-
-.form-group input, .block-item textarea {
-  padding: 12px;
-  background: #2d2d2d;
-  border: 1px solid #444;
-  color: white;
-  border-radius: 6px;
-}
-
-.block-item {
-  position: relative;
-  border: 1px dashed #666;
-  padding: 15px;
-  margin-bottom: 15px;
-  border-radius: 8px;
-}
-
-.img-preview {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  margin-top: 10px;
-  border-radius: 4px;
-}
-
-.remove-btn {
-  background: #ff4444;
-  font-size: 12px;
-  margin-top: 10px;
-}
-
-.button-group {
-  display: flex;
   gap: 10px;
 }
 
+.form-group label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #aaa;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.create-event-container .block-item {
+  width: 95%;
+}
+/* Поля ввода */
+.form-group input, 
+.block-item textarea {
+  width: 100%;
+  max-width: 100%;
+  min-width: 100%;
+  padding: 14px 16px;
+  background: #1f1f1f;
+  border: 1px solid #333;
+  color: #fff;
+  border-radius: 12px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.form-group input:focus, 
+.block-item textarea:focus {
+  outline: none;
+  border-color: #6e00c8;
+  background: #252525;
+  box-shadow: 0 0 0 4px rgba(0, 200, 83, 0.1);
+}
+
+/* Блоки контента (блоки внутри ивента) */
+.block-item {
+  position: relative;
+  background: #1f1f1f;
+  border: 1px solid #333;
+  padding: 24px;
+  margin-bottom: 20px;
+  border-radius: 16px;
+  transition: border-color 0.3s;
+}
+
+.block-item:hover {
+  border-color: #444;
+}
+
+/* Превью изображений */
+.img-preview {
+  width: 100%; /* На мобилках на всю ширину */
+  max-width: 200px;
+  height: 150px;
+  object-fit: cover;
+  margin-top: 15px;
+  border-radius: 12px;
+  border: 2px solid #333;
+}
+
+/* Кнопки управления блоками */
+.remove-btn {
+  background: rgba(255, 68, 68, 0.1);
+  color: #ff4444;
+  border: 1px solid rgba(255, 68, 68, 0.2);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+  align-self: flex-start;
+}
+
+.remove-btn:hover {
+  background: #ff4444;
+  color: #fff;
+}
+
+/* Группа кнопок действий */
+.button-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Две колонки на десктопе */
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.btn-add {
+  padding: 12px;
+  background: #2d2d2d;
+  color: #fff;
+  border: 1px dashed #555;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.btn-add:hover {
+  border-color: #8500c8;
+  background: #333;
+}
+
+/* Кнопка отправки */
 .submit-btn {
-  background: #00c853;
-  padding: 15px;
-  font-weight: bold;
+  background: #6b00c8d0;
+  color: #fff;
+  padding: 18px;
+  border: none;
+  border-radius: 14px;
+  font-weight: 800;
   font-size: 18px;
   cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+  box-shadow: 0 10px 20px rgba(90, 0, 200, 0.2);
+}
+
+.submit-btn:hover:not(:disabled) {
+  background: #8200e6;
+  transform: translateY(-2px);
+  box-shadow: 0 15px 25px rgba(97, 0, 200, 0.3);
 }
 
 .submit-btn:disabled {
-  background: #444;
+  background: #333;
+  color: #666;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* --- Адаптивность (Мобильные устройства) --- */
+
+@media (max-width: 600px) {
+  .create-event-container {
+    padding: 20px 16px;
+    margin: 10px auto;
+    border-radius: 0; /* На мобилках лучше во весь экран без скруглений */
+    width: 100%;
+  }
+
+  .create-event-container h1 {
+    font-size: 20px;
+  }
+
+  .button-group {
+    grid-template-columns: 1fr; /* Кнопки одна под другой */
+  }
+
+  .block-item {
+    padding: 16px;
+  }
+
+  .img-preview {
+    max-width: 100%; /* Картинка на весь экран телефона */
+  }
+  
+  .submit-btn {
+    padding: 16px;
+    font-size: 16px;
+  }
 }

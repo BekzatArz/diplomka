@@ -20,6 +20,26 @@ export default function CreateEventPage() {
   const [eventDate, setEventDate] = useState("");
   const [blocks, setBlocks] = useState<ContentBlock[]>([]);
   const [loading, setLoading] = useState(false);
+  const [dragIndex, setDragIndex] = useState<number | null>(null);
+
+const moveBlock = (from: number, to: number) => {
+  setBlocks((prev) => {
+    const updated = [...prev];
+    const [removed] = updated.splice(from, 1);
+    updated.splice(to, 0, removed);
+    return updated;
+  });
+};
+
+const handleDragStart = (index: number) => {
+  setDragIndex(index);
+};
+
+const handleDrop = (index: number) => {
+  if (dragIndex === null) return;
+  moveBlock(dragIndex, index);
+  setDragIndex(null);
+};
 
   const addTextBlock = () => {
     setBlocks([...blocks, { type: "text", text: "" }]);
@@ -83,6 +103,19 @@ export default function CreateEventPage() {
   return (
     <div className="app">
         <HeaderWrapper />
+        <div className="container">
+          <div className="ui-slider">
+          <div className="ui-track">
+            <div className="ui-slide slide1" />
+            <div className="ui-slide slide2" />
+            <div className="ui-slide slide3" />
+            <div className="ui-slide slide4" />
+            <div className="ui-slide slide1" />
+            <div className="ui-slide slide2" />
+            <div className="ui-slide slide3" />
+            <div className="ui-slide slide4" />
+          </div>
+        </div>
     <div className="create-event-container">
       <h1>Создать новое событие</h1>
       <form onSubmit={handleSubmit} className="create-event-form">
@@ -119,7 +152,8 @@ export default function CreateEventPage() {
         <div className="content-blocks">
           <h2>Контент страницы</h2>
           {blocks.map((block, index) => (
-            <div key={index} className="block-item">
+            <div key={index} className="block-item" onDragOver={(e) => e.preventDefault()}
+              onDrop={() => handleDrop(index)}>
               {block.type === "text" ? (
                 <textarea
                   placeholder="Введите текст..."
@@ -137,19 +171,29 @@ export default function CreateEventPage() {
                 </div>
               )}
               <button type="button" onClick={() => removeBlock(index)} className="remove-btn">Удалить блок</button>
+              <div
+                className="drag-handle"
+                draggable
+                onDragStart={() => handleDragStart(index)}
+              >
+                ⋮⋮
+              </div>
             </div>
+            
           ))}
+          
         </div>
 
         <div className="button-group">
-          <button type="button" onClick={addTextBlock}>+ Добавить текст</button>
-          <button type="button" onClick={addImageBlock}>+ Добавить фото</button>
+          <button className="btn-add" type="button" onClick={addTextBlock}>+ Добавить текст</button>
+          <button className="btn-add" type="button" onClick={addImageBlock}>+ Добавить фото</button>
         </div>
 
         <button type="submit" disabled={loading} className="submit-btn">
           {loading ? "Сохранение..." : "Опубликовать событие"}
         </button>
       </form>
+    </div>
     </div>
     </div>
   );

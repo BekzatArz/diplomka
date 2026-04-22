@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { deleteArticle } from "@/features/articles/api/articleApi";
 import { useEffect, useState } from "react";
+import './ArticleAdminActions.css'
 
 export default function ArticleAdminActions({ id }: { id: number }) {
   const router = useRouter();

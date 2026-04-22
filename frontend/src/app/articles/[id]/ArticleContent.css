@@ -34,33 +34,48 @@
   color: rgba(255, 255, 255, 0.9);
   font-weight: 400; /* Мастер-начертание для текста обычно 400-500 */
 }
-
 /* ИЗОБРАЖЕНИЯ ВНУТРИ СТАТЬИ */
 .article__image {
   width: 100%;
-  height: auto;
-  max-height: 550px;
-  object-fit: cover;
+  display: block;
+  
+  /* Ограничиваем высоту относительно экрана (vh), 
+     чтобы картинка никогда не была больше 70% высоты монитора */
+  max-height: 70vh; 
+  
+  /* Сохраняем пропорции, чтобы картинка не сплющивалась. 
+     Удаляем жесткий height: auto, если используем max-height + object-fit */
+  object-fit: contain; 
+  
+  /* Если картинка слишком широкая, она впишется, если слишком высокая — тоже */
+  background-color: rgba(0, 0, 0, 0.2); /* Легкая подложка для прозрачных картинок */
+  
   border-radius: 24px;
-  margin: 12px 0;
+  margin: 16px auto; /* Центрируем, если картинка не на всю ширину */
+  
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.1); /* Тонкая рамка для объема */
+  border: 1px solid rgba(255, 255, 255, 0.1);
   transition: transform 0.3s ease;
 }
 
+/* Эффект наведения оставляем, но делаем его мягче */
 .article__image:hover {
-  transform: scale(1.01); /* Легкий эффект при наведении */
+  transform: translateY(-5px);
 }
 
-/* Адаптив для мобилок */
+/* Адаптив под разные типы ориентации */
 @media (max-width: 600px) {
-  .article__container {
-    padding-top: 20px;
+  .article__image {
+    max-height: 50vh; /* На мобилках еще чуть меньше в высоту */
+    border-radius: 16px; /* Скругляем меньше на маленьких экранах */
+    margin: 8px 0;
   }
-  .article__title {
-    margin-bottom: 24px;
-  }
-  .article__text {
-    font-size: 18px;
+}
+
+/* Для очень больших мониторов ограничиваем физическую ширину, 
+   чтобы вертикальные фото не занимали весь экран */
+@media (min-width: 1200px) {
+  .article__image {
+    max-width: 90%; /* Оставляем небольшие «воздушные» отступы */
   }
 }

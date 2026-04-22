@@ -33,7 +33,23 @@ export default function ArticleEditForm({ article }: ArticleEditFormProps) {
   const [contents, setContents] = useState<ArticleContentBlock[]>(article.contents);
   const [isSaving, setIsSaving] = useState(false);
   const [message, setMessage] = useState("");
+  const [dragIndex, setDragIndex] = useState<number | null>(null);
 
+  const moveBlock = (from: number, to: number) => {
+  const updated = [...contents];
+  const [removed] = updated.splice(from, 1);
+  updated.splice(to, 0, removed);
+  setContents(updated);
+};
+  const handleDragStart = (index: number) => {
+  setDragIndex(index);
+};
+
+const handleDrop = (index: number) => {
+  if (dragIndex === null) return;
+  moveBlock(dragIndex, index);
+  setDragIndex(null);
+};
   // Функция для получения правильного src для <img>
   const getImageSrc = (block: ArticleContentBlock): string | undefined => {
     if (!block.image_url) return undefined;
@@ -138,7 +154,7 @@ export default function ArticleEditForm({ article }: ArticleEditFormProps) {
 
   return (
     <form onSubmit={handleSave} className="article-edit-form">
-      <div className="form-group">
+      <div className="form-group" style={{textAlign: 'center'}}>
         <label>Заголовок статьи</label>
         <input
           type="text"
@@ -153,7 +169,9 @@ export default function ArticleEditForm({ article }: ArticleEditFormProps) {
         <h3>Содержимое статьи</h3>
 
         {contents.map((block, index) => (
-          <div key={index} className="content-block">
+          <div key={index} className="content-block" 
+                  onDragOver={(e) => e.preventDefault()}
+                  onDrop={() => handleDrop(index)}>
             {block.type === "text" ? (
               <div>
                 <label>Текст {index + 1}</label>
@@ -191,7 +209,7 @@ export default function ArticleEditForm({ article }: ArticleEditFormProps) {
                 )}
               </div>
             )}
-
+            <div className="edit__end_btns">
             <button
               type="button"
               onClick={() => removeBlock(index)}
@@ -199,6 +217,14 @@ export default function ArticleEditForm({ article }: ArticleEditFormProps) {
             >
               Удалить блок
             </button>
+            <div
+              className="drag-handle"
+              draggable
+              onDragStart={() => handleDragStart(index)}
+            >
+              ☰
+              </div>
+            </div>
           </div>
         ))}
       </div>

@@ -16,6 +16,26 @@ export default function CreateArticlePage() {
   const [title, setTitle] = useState("")
   const [blocks, setBlocks] = useState<Block[]>([])
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [dragIndex, setDragIndex] = useState<number | null>(null);
+
+const moveBlock = (from: number, to: number) => {
+  setBlocks((prev) => {
+    const updated = [...prev];
+    const [removed] = updated.splice(from, 1);
+    updated.splice(to, 0, removed);
+    return updated;
+  });
+};
+
+const handleDragStart = (index: number) => {
+  setDragIndex(index);
+};
+
+const handleDrop = (index: number) => {
+  if (dragIndex === null) return;
+  moveBlock(dragIndex, index);
+  setDragIndex(null);
+};
 
   const addText = () => {
     setBlocks((prev) => [...prev, { type: "text", text: "" }])
@@ -54,36 +74,57 @@ export default function CreateArticlePage() {
   }
 
   const handleSubmit = async () => {
-    if (!title.trim()) return alert("Введите заголовок")
-    setIsSubmitting(true)
+  if (!title.trim()) return alert("Введите заголовок");
+  setIsSubmitting(true);
 
-    try {
-      const formData = new FormData()
-      formData.append("title", title)
+  try {
+    const formData = new FormData();
+    formData.append("title", title);
 
-      const prepared = blocks.map((b) => {
-        if (b.type === "image" && b.file) {
-          formData.append(b.fileKey, b.file)
-          return { type: "image", fileKey: b.fileKey }
-        }
-        return { type: "text", text: (b as TextBlock).text }
-      })
+    const prepared = blocks.map((b, index) => {
+      if (b.type === "image" && b.file) {
+        // КЛЮЧЕВОЕ ИЗМЕНЕНИЕ: 
+        // Формируем ключ "image_0", "image_1" и т.д.
+        const serverKey = `image_${index}`; 
+        formData.append(serverKey, b.file);
+        
+        return { 
+          type: "image", 
+          fileKey: serverKey // Передаем этот же ключ в JSON
+        };
+      }
+      return { type: "text", text: (b as TextBlock).text };
+    });
 
-      formData.append("contents", JSON.stringify(prepared))
+    formData.append("contents", JSON.stringify(prepared));
 
-      await createArticle(formData)
-      router.push("/articles")
-    } catch (error) {
-      console.error(error)
-      alert("Ошибка при создании")
-    } finally {
-      setIsSubmitting(false)
-    }
+    await createArticle(formData);
+    router.push("/articles");
+  } catch (error) {
+    console.error(error);
+    alert("Ошибка при создании");
+  } finally {
+    setIsSubmitting(false);
   }
+};
 
   return (
     <div className="app">
       <HeaderWrapper />
+      <div className="container">
+        <div className="ui-slider">
+          <div className="ui-track">
+            <div className="ui-slide slide1" />
+            <div className="ui-slide slide2" />
+            <div className="ui-slide slide3" />
+            <div className="ui-slide slide4" />
+            <div className="ui-slide slide1" />
+            <div className="ui-slide slide2" />
+            <div className="ui-slide slide3" />
+            <div className="ui-slide slide4" />
+          </div>
+        </div>
+
       <div className="container create-article" style={{ backgroundColor: '#f5f5f5', padding: '20px' }}>
         <h1 className="create-article-title">Создать статью</h1>
 
@@ -96,7 +137,8 @@ export default function CreateArticlePage() {
 
         <div className="blocks">
           {blocks.map((block, i) => (
-            <div key={i} className="block-item" style={{ marginBottom: '15px', position: 'relative' }}>
+            <div key={i} className="block-item" onDragOver={(e) => e.preventDefault()}
+                onDrop={() => handleDrop(i)} style={{ marginBottom: '15px', position: 'relative' }}>
               <button className="remove-block" onClick={() => removeBlock(i)}>✕</button>
               
               {block.type === "text" && (
@@ -119,7 +161,14 @@ export default function CreateArticlePage() {
                     onChange={(e) => updateImage(i, e.target.files?.[0] || null)}
                   />
                 </div>
-              )}
+                
+              )}<div
+                  className="drag-handle"
+                  draggable
+                  onDragStart={() => handleDragStart(i)}
+                >
+                  ⋮⋮
+                </div>
             </div>
           ))}
         </div>
@@ -136,6 +185,7 @@ export default function CreateArticlePage() {
         >
           {isSubmitting ? "Публикация..." : "Опубликовать статью"}
         </button>
+      </div>
       </div>
     </div>
   )

@@ -1,103 +1,235 @@
+/* Глобально */
+.create-article,
+.create-article * {
+  box-sizing: border-box;
+}
+
+/* Основной контейнер */
 .create-article {
-  padding: 20px;
+  max-width: 860px;
+  width: 100%;
+  margin: 40px auto;
+  padding: 28px;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 22px;
+
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  color: #fff;
 }
 
+/* Заголовок */
 .create-article-title {
-  margin-bottom: 20px;
-  font-size: 22px;
+  margin-bottom: 24px;
+  font-size: clamp(22px, 4vw, 30px);
   font-weight: 700;
+  color: #d400ff;
 }
 
-/* input */
+/* Инпут */
 .create-article-input {
-  max-width: 800px;
-  min-width: 800px;
-  padding: 10px;
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 16px;
 
-  border-radius: 10px;
-  border: none;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 
-  background: #111;
-  color: white;
+  background: rgba(255, 255, 255, 0.03);
+  color: #fff;
 
   margin-bottom: 20px;
+  transition: 0.25s;
 }
 
-/* blocks */
+.create-article-input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.create-article-input:focus {
+  outline: none;
+  border-color: #d400ff;
+  background: rgba(255, 255, 255, 0.06);
+}
 .blocks {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  width: 100%;
+}
+/* Блок */
+.create-article .block-item {
+  position: relative;
+  width: 100%;
+
+  padding: 20px;
+  padding-right: 50px;
+
+  border-radius: 16px;
+
+  /* ЧИСТЫЙ прозрачный блок */
+  background: rgba(255, 255, 255, 0.04);
+
+  border: 1px solid rgba(255, 255, 255, 0.07);
+
+  margin-bottom: 14px;
+
+  transition: all 0.2s ease;
 }
 
-.block {
-  background: #111;
-  padding: 10px;
-  border-radius: 10px;
+.block-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.15);
 }
 
 /* textarea */
-.block-textarea {
+.create-article .block-textarea {
   width: 100%;
-  min-height: 100px;
+  min-height: 90px;
+
+  background: transparent;
+  border: none;
+  outline: none;
+
+  resize: vertical;
+
+  color: #eaeaea;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+/* удалить */
+.remove-block {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+
+  width: 30px;
+  height: 30px;
+
+  border-radius: 8px;
+  border: none;
+
+  background: rgba(255, 0, 0, 0.15);
+  color: #ff4d4d;
+
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.remove-block:hover {
+  background: #ff4d4d;
+  color: white;
+}
+
+/* кнопки */
+.actions {
+  margin-top: 20px;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  justify-content: center;
+
+  padding: 16px;
+
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.03);
+
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.btn-add {
+  padding: 10px 18px;
+
+  border-radius: 10px;
+  border: 1px dashed rgba(255, 255, 255, 0.2);
 
   background: transparent;
   color: white;
 
-  border: none;
-  outline: none;
-
-  resize: none;
-}
-
-/* file input */
-.block-file {
-  color: white;
-}
-
-/* actions */
-.actions {
-  margin-top: 20px;
-  display: flex;
-  gap: 10px;
-}
-
-.btn {
-  padding: 8px 14px;
-
-  background: #222;
-  color: white;
-
-  border: none;
-  border-radius: 10px;
-
   cursor: pointer;
-
-  transition: 0.2s;
+  transition: 0.25s;
 }
 
-.btn:hover {
-  background: #333;
+.btn-add:hover {
+  background: rgba(212, 0, 255, 0.12);
+  border-color: #d400ff;
 }
 
 /* submit */
 .submit-btn {
-  margin-top: 20px;
-  padding: 10px 20px;
+  width: 100%;
+  margin-top: 24px;
 
-  background: #d400ff;
-  color: white;
+  padding: 16px;
 
+  border-radius: 14px;
   border: none;
-  border-radius: 10px;
+
+  background: linear-gradient(135deg, #d400ff, #9f00ff);
+
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
 
   cursor: pointer;
 
-  font-weight: 600;
-
-  transition: 0.2s;
+  transition: 0.25s;
 }
 
-.submit-btn:hover {
-  opacity: 0.85;
+.submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(212, 0, 255, 0.4);
+}
+
+/* ===== АДАПТАЦИЯ ===== */
+
+/* планшеты */
+@media (max-width: 768px) {
+  .create-article {
+    margin: 20px;
+    padding: 20px;
+  }
+
+  .block-item {
+    padding: 16px;
+    padding-right: 45px;
+  }
+}
+
+/* телефоны */
+@media (max-width: 480px) {
+  .create-article {
+    margin: 0;
+    border-radius: 0;
+    border: none;
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+  }
+
+  .create-article-title {
+    font-size: 20px;
+  }
+
+  .create-article-input {
+    font-size: 15px;
+  }
+
+  .actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn-add {
+    width: 100%;
+    text-align: center;
+  }
+
+  .submit-btn {
+    font-size: 15px;
+    padding: 14px;
+  }
 }

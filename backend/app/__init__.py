@@ -21,7 +21,7 @@ def create_app():
         r"/*": {
             "origins": [
                 "http://localhost:3000",
-                "https://diplomka-umxh.vercel.app"
+                "https://diplom-frontend-gamma.vercel.app"
             ]
         }
     })

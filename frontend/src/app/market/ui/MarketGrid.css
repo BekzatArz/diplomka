@@ -23,30 +23,39 @@
   opacity: 0.8;
 }
 
+
 /* 🔥 сетка */
 .market-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  /* auto-fill создаст столько колонок по 280px, сколько влезет, 
+     а justify-content: center выровняет их по центру */
+  grid-template-columns: repeat(auto-fill, 280px);
   gap: 20px;
+  justify-content: center; 
 
   width: 100%;
-  max-width: 1201px;
+  max-width: 1200px; /* Ограничиваем общую ширину */
+  margin: 0 auto;    /* Центрируем саму сетку */
 }
 
-/* 📱 адаптив */
-@media (max-width: 1300px) {
+/* 📱 Адаптив теперь стал намного проще */
+
+/* На больших экранах просто ограничиваем количество колонок, если нужно, 
+   хотя auto-fill выше уже делает основную работу */
+@media (max-width: 1250px) {
   .market-grid {
+    /* Если хочешь строго 3 колонки на больших экранах: */
     grid-template-columns: repeat(3, 280px);
   }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 900px) {
   .market-grid {
     grid-template-columns: repeat(2, 280px);
   }
 }
 
-@media (max-width: 650px) {
+@media (max-width: 620px) {
   .market-grid {
     grid-template-columns: repeat(1, 280px);
   }

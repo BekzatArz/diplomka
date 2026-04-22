@@ -29,9 +29,21 @@ export default async function ArticleEditPage({
       <HeaderWrapper />
 
       <div className="container">
+        <div className="ui-slider">
+          <div className="ui-track">
+            <div className="ui-slide slide1" />
+            <div className="ui-slide slide2" />
+            <div className="ui-slide slide3" />
+            <div className="ui-slide slide4" />
+            <div className="ui-slide slide1" />
+            <div className="ui-slide slide2" />
+            <div className="ui-slide slide3" />
+            <div className="ui-slide slide4" />
+          </div>
+        </div>
         <article className="article__container">
-          <h1 className="article__title">Редактирование статьи</h1>
-          <p className="article__subtitle">ID: {numId}</p>
+          <h1 className="article__title" style={{textAlign: 'center'}}>Редактирование статьи</h1>
+          <p className="article__subtitle" style={{textAlign: "center"}}>ID: {numId}</p>
 
           <ArticleEditForm article={article} />
         </article>

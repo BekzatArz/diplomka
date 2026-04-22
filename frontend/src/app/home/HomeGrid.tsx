@@ -35,7 +35,7 @@ const COSPLAY_DATA = [
     character: "Jinx", 
     fandom: "League of Legends", 
     author: "Powder_C", 
-    img: "https://images.unsplash.com/photo-1511512578047-dfb367046420", 
+    img: "https://i0.wp.com/mediachomp.com/wp-content/uploads/2024/02/jinx-cosplay-04.jpg?resize=650%2C434&ssl=1", 
     focus: "Бутафория",
     description: "Создание пушки 'Пыщ-Пыщ' весом всего 2кг при длине в метр."
   },

@@ -15,7 +15,7 @@ export default function ProductCard({
       {item.image_url && (
         <div className="product-image">
           <img
-            src={API_URL + `{item.image_url}`}
+            src={API_URL + `${item.image_url}`}
             alt={item.title}
           />
         </div>

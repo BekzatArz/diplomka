@@ -1,225 +1,291 @@
-/* app/articles/edit/[id]/ArticleEditForm.css */
-
-.article-edit-form {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 20px 0;
-  color: #e0d4ff;
+/* Контейнер */
+.article__container {
+  width: 100%;
 }
 
+/* Форма */
+.article-edit-form {
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+
+  /* стекло */
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(16px);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+
+  color: #f1f1f1;
+}
+.drag-handle {
+  position: relative;
+  top: 10px;
+  left: 10px;
+
+  width: 28px;
+  height: 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 8px;
+
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.7);
+
+  cursor: grab;
+
+  transition: 0.2s;
+  user-select: none;
+}
+
+.drag-handle:hover {
+  background: rgba(212, 0, 255, 0.2);
+  color: #fff;
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+}
+.edit__end_btns {
+  display: flex;
+  justify-content:space-between;
+}
+/* Группа */
 .form-group {
-  margin-bottom: 28px;
+  margin-bottom: 24px;
 }
 
 .form-group label {
   display: block;
-  margin-bottom: 10px;
-  font-weight: 600;
-  color: #c4b5fd;
-  font-size: 1.05rem;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #bfaaff;
 }
 
-/* Поля ввода */
+/* ===== INPUTS ===== */
 .article-input,
 .article-textarea,
 .file-input {
-  width: 100%;
-  padding: 14px 16px;
-  background: #2a1f3d;
-  border: 2px solid #4c3f6e;
-  border-radius: 10px;
-  font-size: 1rem;
-  color: #e0d4ff;
-  transition: all 0.3s ease;
+  width: 95%;
+  padding: 14px;
+
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  background: rgba(255, 255, 255, 0.03);
+  color: #fff;
+
+  transition: 0.25s;
+}
+
+.article-input::placeholder,
+.article-textarea::placeholder {
+  color: rgba(255, 255, 255, 0.4);
 }
 
 .article-input:focus,
 .article-textarea:focus,
 .file-input:focus {
-  border-color: #a78bfa;
   outline: none;
-  box-shadow: 0 0 0 4px rgba(167, 139, 250, 0.15);
-  background: #32274a;
+  border-color: #d400ff;
+  background: rgba(255, 255, 255, 0.06);
 }
 
-/* Текстовое поле */
+/* textarea */
 .article-textarea {
+  min-height: 140px;
   resize: vertical;
-  min-height: 160px;
-  font-family: inherit;
-  line-height: 1.65;
 }
 
-/* Блоки контента */
+/* ===== БЛОКИ ===== */
 .content-blocks {
-  margin: 35px 0;
+  margin: 30px 0;
 }
 
 .content-block {
-  background: #2a1f3d;
-  border: 1px solid #4c3f6e;
-  border-radius: 14px;
-  padding: 22px;
-  margin-bottom: 24px;
-  position: relative;
+  background: rgba(255, 255, 255, 0.04);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+
+  padding: 18px;
+  margin-bottom: 16px;
+
+  transition: 0.2s;
 }
 
-.content-block label {
-  display: block;
-  margin-bottom: 12px;
-  font-weight: 500;
-  color: #c4b5fd;
+.content-block:hover {
+  background: rgba(255, 255, 255, 0.06);
 }
 
-/* Предпросмотр изображения */
+/* ===== IMAGE ===== */
 .image-preview-container {
-  margin-top: 16px;
-  text-align: center;
-  background: #1f162e;
+  margin-top: 14px;
   padding: 12px;
-  border-radius: 10px;
-  border: 1px solid #4c3f6e;
+
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.25);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .image-preview {
-  max-width: 100%;
-  max-height: 400px;
-  border-radius: 10px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  width: 100%;
+  max-height: 300px;
   object-fit: contain;
+  border-radius: 10px;
 }
 
 .no-image {
-  color: #9f8fd1;
-  font-style: italic;
-  padding: 30px 20px;
   text-align: center;
-  background: #1f162e;
-  border-radius: 10px;
-  border: 1px dashed #6b5b9e;
+  padding: 20px;
+  color: rgba(255, 255, 255, 0.5);
 }
 
-/* Кнопки добавления */
+/* ===== ADD BUTTONS ===== */
 .add-buttons {
   display: flex;
-  gap: 14px;
-  margin: 30px 0;
+  gap: 10px;
+  margin: 20px 0;
 }
 
 .add-btn {
   flex: 1;
-  padding: 15px 20px;
-  background: #d400ffa0;
-  color: white;
-  border: none;
+  padding: 12px;
+
   border-radius: 10px;
-  font-size: 1.02rem;
-  font-weight: 500;
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+
+  background: transparent;
+  color: white;
+
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: 0.25s;
 }
 
 .add-btn:hover {
-  background: #d400ffa0;
-  transform: translateY(-2px);
+  background: rgba(212, 0, 255, 0.15);
+  border-color: #d400ff;
 }
 
-/* Кнопка удаления блока */
+/* ===== REMOVE ===== */
 .remove-btn {
-  margin-top: 18px;
-  padding: 10px 18px;
-  background: #c2413f;
-  color: white;
-  border: none;
+  margin-top: 12px;
+  padding: 8px 14px;
+
   border-radius: 8px;
+  border: none;
+
+  background: rgba(255, 0, 0, 0.2);
+  color: #ff4d4d;
+
   cursor: pointer;
-  font-size: 0.96rem;
-  transition: background 0.3s;
 }
 
 .remove-btn:hover {
-  background: #e11d48;
+  background: #ff4d4d;
+  color: white;
 }
 
-/* Кнопки действий формы */
+/* ===== ACTIONS ===== */
 .form-actions {
   display: flex;
-  gap: 16px;
-  margin-top: 45px;
+  gap: 12px;
+  margin-top: 30px;
 }
 
 .cancel-btn,
 .save-btn {
   flex: 1;
-  padding: 16px 24px;
-  font-size: 1.08rem;
-  font-weight: 500;
-  border-radius: 10px;
+  padding: 14px;
+
+  border-radius: 12px;
+  font-weight: 600;
+
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: 0.25s;
 }
 
+/* cancel */
 .cancel-btn {
-  background: #3f2a5a;
-  color: #d1c4ff;
-  border: 2px solid #5b4a7e;
+  background: rgba(255, 255, 255, 0.05);
+  color: #ddd;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .cancel-btn:hover {
-  background: #4c3870;
-  color: white;
+  background: rgba(255, 255, 255, 0.1);
 }
 
+/* save */
 .save-btn {
-  background: #00ff26a0;
-  color: white;
+  background: linear-gradient(135deg, #d400ff, #9f00ff);
   border: none;
+  color: white;
 }
 
 .save-btn:hover:not(:disabled) {
-  background: #d400ffa0;
   transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(212, 0, 255, 0.4);
 }
 
 .save-btn:disabled {
-  background: #5b4a7e;
+  opacity: 0.5;
   cursor: not-allowed;
-  transform: none;
 }
 
-/* Сообщения */
+/* ===== MESSAGE ===== */
 .message {
-  margin-top: 25px;
-  padding: 16px 20px;
+  margin-top: 20px;
+  padding: 14px;
   border-radius: 10px;
   text-align: center;
-  font-weight: 500;
-  font-size: 1.02rem;
 }
 
 .success {
-  background: #2a3f2e;
-  color: #86efac;
-  border: 1px solid #4ade80;
+  background: rgba(0, 255, 100, 0.1);
+  border: 1px solid rgba(0, 255, 100, 0.3);
 }
 
 .error {
-  background: #3f2a2a;
-  color: #fda4af;
-  border: 1px solid #fb7185;
+  background: rgba(255, 0, 0, 0.1);
+  border: 1px solid rgba(255, 0, 0, 0.3);
 }
 
-/* Адаптивность */
+/* ===== АДАПТАЦИЯ ===== */
+
+/* планшет */
 @media (max-width: 768px) {
   .article-edit-form {
-    padding: 10px 0;
+    padding: 0px;
   }
-  
-  .content-block {
-    padding: 18px;
-  }
-  
+
   .add-buttons {
     flex-direction: column;
+  }
+}
+
+/* телефон */
+@media (max-width: 480px) {
+  .article__container {
+    padding: 0;
+  }
+
+  .article-edit-form {
+    border-radius: 0;
+    border: none;
+    min-height: 100vh;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .save-btn,
+  .cancel-btn {
+    width: 100%;
   }
 }
