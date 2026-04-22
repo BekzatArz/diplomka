@@ -15,7 +15,8 @@
 /* --- Секция "О косплее" (ABOUT) --- */
 .cos-about {
   padding: 100px 0;
-  background: linear-gradient(180deg, #080808 0%, #111 100%);
+  border-radius: 18px;
+  background: linear-gradient(180deg, #a817d4 0%, #111 100%);
 }
 
 .cos-about-grid {

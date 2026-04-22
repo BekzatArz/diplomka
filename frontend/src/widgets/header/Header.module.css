@@ -1,13 +1,13 @@
 .header {
   position: relative;
   width: 100%;
-  min-height: 100px; /* Изменил с height на min-height */
+  height: 100px; /* Твоя стандартная высота */
   z-index: 100;
   display: flex;
-  justify-content: center;
+  justify-content: center; /* На десктопе всё по центру */
   align-items: center;
   background: transparent;
-  padding: 10px 20px;
+  padding: 0 20px;
 }
 
 .header::before {
@@ -26,24 +26,30 @@
 .header__nav {
   display: flex;
   align-items: center;
-  justify-content: center;
-  /* Вместо жесткого gap используем адаптивный интервал */
-  gap: clamp(15px, 5vw, 87px); 
-  flex-wrap: wrap; /* Позволяет ссылкам переноситься на мобилках */
+  justify-content: center; /* Центрируем контент на больших экранах */
   width: 100%;
   max-width: 1200px;
+  gap: 26.7px; /* Твой оригинальный отступ */
+}
+
+.logo img {
+  width: 150px;
+  object-fit: contain;
+}
+
+.nav_links {
+  display: flex;
+  gap: 60px;
+  align-items: center;
 }
 
 .header__nav_links {
   font-size: 20px;
   color: #ffffff;
   text-shadow: 0 0 12px rgba(212, 0, 255, 0.3);
-  letter-spacing: 0.5px;
   font-weight: 600;
   text-decoration: none;
-  position: relative;
-  transition: all 0.3s ease;
-  white-space: nowrap; /* Чтобы текст ссылки не разбивался на две строки */
+  transition: 0.2s;
 }
 
 .header__nav_links:hover {
@@ -51,38 +57,73 @@
   text-shadow: 0 0 10px rgba(174, 0, 255, 0.39);
 }
 
-/* Адаптив для планшетов и мобильных */
-@media (max-width: 1024px) {
-  .header__nav {
-    gap: 30px; /* Уменьшаем расстояние */
-  }
+.burger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 6px;
 }
 
+.burger span {
+  width: 28px;
+  height: 3px;
+  background: #d400ff;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+/* 📱 МОБИЛКА */
 @media (max-width: 768px) {
   .header {
-    height: auto;
-    padding: 20px 10px;
+    height: 100px;
+    /* Убеждаемся, что отступы по бокам точно есть */
+    padding: 0 10px; 
   }
-  
+
   .header__nav {
-    gap: 15px;
+    justify-content: space-between;
+    gap: 0;
+    width: 100%; /* Чтобы nav растянулся и padding хедера сработал */
+  }
+
+  .burger {
+    display: flex;
+    /* Если хочешь еще сильнее отодвинуть именно бургер, 
+       можно добавить margin-right, но padding хедера обычно хватает */
+    margin-right: 40px; 
+  }
+
+  .nav_links {
+    position: absolute;
+    top: 100px; /* Ровно под высоту хедера */
+    left: 0;
+    width: 100%;
+    background: #121212;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 0;
+    gap: 25px;
+    z-index: 1000;
+    
+    /* Анимация выезда */
+    transform: translateY(-150%);
+    opacity: 0;
+    transition: 0.4s ease;
+    pointer-events: none;
+  }
+
+  .nav_links.active {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: all;
   }
 
   .header__nav_links {
-    font-size: 16px; /* Уменьшаем шрифт */
+    font-size: 22px;
   }
 }
 
-@media (max-width: 480px) {
-  .header__nav {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* На самых маленьких экранах в 2 колонки */
-    text-align: center;
-    gap: 10px;
-  }
-  
-  .header__nav_links {
-    font-size: 14px;
-    padding: 5px;
-  }
-}
+/* Анимация крестика для бургера */
+.burger.open span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+.burger.open span:nth-child(2) { opacity: 0; }
+.burger.open span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }

@@ -39,7 +39,7 @@ def create_app():
         
         if not existing_admin:
             print("База пуста. Создаю системного администратора...")
-            hashed_password = generate_password_hash("123456")
+            hashed_password = generate_password_hash("Beka200702007.")
             new_admin = User(
                 email=admin_email,
                 password=hashed_password,
