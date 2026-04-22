@@ -12,27 +12,18 @@ export default function Header() {
   return (
     <header className={styles.header}>
       <nav className={styles.header__nav}>
-
-        <Link href="/" className={styles.header__nav_links}>
-          Главная
-        </Link>
-
-        <Link href="/cosplay" className={styles.header__nav_links}>
-          Косплей
-        </Link>
-
-        <Link href="/market" className={styles.header__nav_links}>
-          Магазин
-        </Link>
-
-        <Link href="/articles" className={styles.header__nav_links}>
-          Статьи
-        </Link>
-
-        <Link href="/events" className={styles.header__nav_links}>
-          Косплей-фесты
-        </Link>
-
+        <Link href="/" className={styles.header__nav_links}>Главная</Link>
+        <Link href="/cosplay" className={styles.header__nav_links}>Косплей</Link>
+        <Link href="/market" className={styles.header__nav_links}>Магазин</Link>
+        <Link href="/articles" className={styles.header__nav_links}>Статьи</Link>
+        <Link href="/events" className={styles.header__nav_links}>Фесты</Link>
+        
+        {/* Добавил контейнер профиля, чтобы он был частью флекс-системы */}
+        <div className={styles.profile_container}>
+             <div className={styles.profile_icon}>
+                {/* Твое изображение профиля */}
+             </div>
+        </div>
       </nav>
     </header>
   );
